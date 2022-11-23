@@ -1,0 +1,17 @@
+{
+  "name": "digital_interactive_learning",
+  "version": "1.0.0",
+  "description": "This is a tool to run multimedia content presentation and collect  multi-modal inputs for interactive learning experience",
+  "main": "QA.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "P S Ramkumar",
+  "license": "ISC",
+  "dependencies": {
+    "cros": "^1.0.1",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+  }
+}
