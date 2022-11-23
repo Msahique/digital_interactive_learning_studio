@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="filesaver.js"></script>
+  <script src="qa_list.js"></script>
+</head>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    #home {
+        text-align: center;
+        background: rgb(153, 182, 212);
+        position: absolute;
+        height: 50%;
+        width: 80%;
+        left: 1%;
+        right: 1%;
+
+
+      }
+    
+      #column1,#ql_column1 {
+        position: inherit;
+        float: left;
+        height: 50%;
+        width: 39%;
+        border:border-dark;
+
+      }
+      #column2,#ql_column2 {
+        position: inherit;
+        float: right;
+        height: 50%;
+        width: 60%;
+        border:border-dark;
+      }
+    
+    #myInput {
+      background-image: url('/css/searchicon.png');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 40%;
+      font-size: 14px;
+      padding: 6px 14px 6px 34px;
+      border: 1px solid #ddd;
+      margin-bottom: 1px;
+    }
+    
+    #myTable1,#myTable2 {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      font-size: 12px;
+    }
+    
+    #myTable th, #myTable td {
+      text-align: left;
+      padding: 5px;
+    }
+    
+    #myTable tr {
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #myTable tr.header, #myTable tr:hover {
+      background-color: #f1f1f1;
+    }
+
+
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      border: 1px solid #ddd;
+      margin-top: -1px; /* Prevent double borders */
+      background-color: #f6f6f6;
+      padding: 5px;
+      text-decoration: none;
+      font-size: 13px;
+      color: black;
+      display: block;
+      position: relative;
+    }
+
+    ul li:hover {
+      background-color: #eee;
+    }
+
+    .close {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      padding: 12px 16px;
+      transform: translate(0%, -50%);
+    }
+
+    .close:hover {background: #bbb;}
+    
+    .mpopup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content {
+        position: relative;
+        background-color: #fff;
+        margin: auto;
+        padding: 10;
+        width: 70%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        border-radius: 0.3rem;
+    }
+    .modal-header {
+        padding: 2px 12px;
+        background-color: #ffffff;
+        color: #333;
+        border-bottom: 1px solid #e9ecef;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+    }
+    .modal-header h2{
+        font-size: 1.25rem;
+        margin-top: 14px;
+        margin-bottom: 14px;
+    }
+    .modal-body {
+        padding: 2px 12px;
+    }
+    .modal-footer {
+        padding: 1rem;
+        background-color: #ffffff;
+        color: #333;
+        border-top: 1px solid #e9ecef;
+        border-bottom-left-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+        text-align: right;
+    }
+
+    .close {
+        color: #888;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover, .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    /* add animation effects */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }   
+
+</style>
+<body >
+<div class="container mt-3">
+  <br>
+  <!-- Nav tabs -->
+  <div class="tab_div">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#tests">Test</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" onclick="create_table_qa('myTable1')" href="#questions">Question Bank</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" onclick="create_table_qa('myTable2')" href="#qa_generator">Question Paper generator</a>
+          </li>
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home"  class="container tab-pane active" height="40%" width="100%" ><br>
+      <h3>HOME</h3>
+    </div>
+
+    <div id="tests" class="container tab-pane fade" height="40%" width="100%" ><br>
+      <h3>Menu 1</h3>
+    </div>
+
+    <div id="questions" class="container tab-pane fade"  height="40%" width="100%" ><br>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+      <button type="button" onclick="create_new_question()" >new +</button>
+      <!-- <button id="preview" onclick="iframe_update()" >Preview </button>  -->
+      <!--<button  onclick="view_q_paper()"  >View</button> -->
+      <button  onclick="load_view()" >View</button>
+      <button  onclick="get_qa_list()" >qalist</button>
+      <div id="preview_modal" class="modal">
+          <div class="modal-content">
+              <!-- <h1>Preview</h1> -->
+              <p id="preview_content"> Content </p>
+  
+          </div>
+      </div>
+
+      <button type="button" >Delete</button>
+      <button  onclick="get_qa_list()" ></button>
+      <!--<button type="button" class="btn btn-primary float-right">new Question</button> -->
+
+          <table id="myTable1">
+            <tr class="header">
+              <th>Select</th>
+              <th >id</th>
+              <th >type</th>
+              <th >Source</th>
+              <th >Description</th>
+              <th >Question</th>
+              <th >Option</th>
+              <th >Correct_answer</th>
+              <th >User_answer</th>
+            </tr>
+           
+          </table>
+       
+        <div id="column1" class="border border-dark" style="border-width: 50%; border-bottom:50% ;">
+          <h2>Editor</h2> 
+          <p id="editor_id"></p>
+          <div>
+            <button id="preview" style="float:right ;">Preview</button>
+            <button id="clear_editor_content" onclick="clear_editor_content()" style="float:right ;">Clear</button>
+            <label>Presentation media</label><br>
+            <input multiple type="file" placeholder="choose source file" id="myFile" > <br><br> 
+            
+            <label>Description</label><br>
+            <input type="text" id="description"><br><br>
+            <label>Question</label> <br>
+            <input type="text" id="question" placeholder="Question"><br><br>
+            <div id="answer_option_div">
+              <label>choose Optional answers</label> <br> 
+              <select name="answer" id="answer_type" onchange="get_option_type(this)"><option value="subjecive">Subjective</option><option value="2">2 options</option><option value="3">3 options</option><option value="4">4 options</option></select>
+              <div id="option_div" ></div>
+                
+            </div>
+                
+          
+          </div>
+              <!-- <label >User Answer:</label><br>
+              <input type="text" id="user_ans" placeholder="enter user answer"><br> -->
+              <br>
+              <button id="submit" onclick="submit_editor_content()">Submit</button>     
+        </div>
+        
+
+        <div id="column2" style="display: block;" class="border border-dark">
+          <button id="genarate_js" onclick="generate_js()" style="float:right ;">Download</button>
+          <h2>Viewer</h2> 
+          <p id="demo"></p>
+        </div>
+    </div>
+
+    <div id="qa_generator" class="container tab-pane fade" height="40%" width="100%" ><br>
+      <table id="myTable2">
+        <tr class="header">
+          <th>Select</th>
+          <th >id</th>
+          <th >type</th>
+          <th >Source</th>
+          <th >Description</th>
+          <th >Question</th>
+          <th >Option</th>
+          <th >Correct_answer</th>
+          <th >User_answer</th>
+        </tr>
+       
+      </table>
+
+      <div id="ql_column1" class="border border-dark" style="border-width: 50%; border-bottom:50% ;">
+        <button id="genarate_js" onclick="ql_show_questions()" style="float:right ;">Show questions</button>
+        <h2>Selected Questions</h2> 
+        <div> <p id="editor_id"></p> </div>
+      </div>
+
+      <div id="ql_column2" style="display: block;" class="border border-dark">
+        <button id="genarate_js" onclick="generate_js()" style="float:right ;">Download</button>
+        <h2>Viewer</h2> 
+        <p id="demo"></p>
+      </div>
+      
+  </div>
+  
+</div>
+
+</body>
+<script>
+    console.log("this is qa list:",qa_list);
+    
+    function get_qa_list(){
+      //var table = document.getElementById("myTable")
+      const list1 = document.getElementsByTagName("checkbox");
+      
+      console.log("list1:",list1);
+      /*qa_list= {item: [
+          {
+            "language": "english",
+            "question": [
+              {
+                "typ": "img",
+                "src": "Picture1.png",
+                "des": "The above image is one of the most widely used picture to demonstrate image compression",
+                "ques": "Identify the person in the above image optional answers are",
+                "opt": [
+                  {
+                    "root": "a",
+                    "alias": [
+                      "s",
+                      "d"
+                    ],
+                    "iconfile": ""
+                  },
+                  {
+                    "root": "z",
+                    "alias": [
+                      "x",
+                      "c"
+                    ],
+                    "iconfile": ""
+                  }
+                ],
+                "correct_ans": [
+                  "0",
+                  "1",
+                  "0"
+                ],
+                "user_ans": [
+                  "0",
+                  "0"
+                ]
+              }
+            ]
+          }
+        ]
+      }*/
+      qa_list.list= "hello";
+      console.log("done...")
+      console.log("this is qa list:",qa_list);
+    }
+
+
+    var content_obj={   
+            qid:0, 
+            typ:"", 
+            src:"", 
+            des:"",
+            ques:"",
+            opt:[],
+            correct_ans:[],
+            user_ans:[]
+        }
+    var data;
+    var final_content1=[]
+    var final_content={ item:[{language:"english",question:[]}]} 
+    var content=[
+        
+        {   qid:4, 
+            typ:"text", 
+            src:"eng_example1.txt", 
+            des:"Study details of document shown",
+            ques:"which fruit name is most repeated in this document?",
+            opt: 
+            [   {   index:"1",root:"apple", alias:["one","1","apple","yapple"],sourceFile:"apple.jpg"},
+                {   index:"2",root:"orange", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
+                {   index:"3",root:"grape", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
+                {   index:"4",root:"banana", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
+                
+            ],
+            correct_ans:["0","0","0","1"],
+            user_ans:["0","0","0","0"]
+        },
+        {   qid:5, 
+            typ:"text", 
+            src:"eng_example2.txt", 
+            des:"Study details of document2 shown",
+            ques:"which fruit name is most repeated in this document?",
+            opt: 
+            [   {   index:"1",root:"mango", alias:["one","1","apple","yapple"],sourceFile:"apple.jpg"},
+                {   index:"2",root:"kiwi", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
+                {   index:"3",root:"water melon", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
+                {   index:"4",root:"lime", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
+                
+            ],
+            correct_ans:["0","0","1","0"],
+            user_ans:["0","0","0","0"]
+        }
+           
+    ]
+    
+    var content1=[
+        
+        {   qid:4, 
+            typ:"text", 
+            src:"eng_example1.txt", 
+            des:"Study details of document shown",
+            ques:"which fruit name is most repeated in this document?",
+            opt: 
+            [   {   index:"1",root:"apple", alias:["one","1","apple","yapple"],sourceFile:"apple.jpg"},
+                {   index:"2",root:"orange", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
+                {   index:"3",root:"grape", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
+                {   index:"4",root:"banana", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
+                
+            ],
+            correct_ans:["0","0","0","1"],
+            user_ans:["0","0","0","0"]
+        },
+        {   qid:5, 
+            typ:"text", 
+            src:"eng_example2.txt", 
+            des:"Study details of document2 shown",
+            ques:"which fruit name is most repeated in this document?",
+            opt: 
+            [   {   index:"1",root:"mango", alias:["one","1","apple","yapple"],sourceFile:"apple.jpg"},
+                {   index:"2",root:"kiwi", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
+                {   index:"3",root:"water melon", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
+                {   index:"4",root:"lime", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
+                
+            ],
+            correct_ans:["0","0","1","0"],
+            user_ans:["0","0","0","0"]
+        },
+
+        
+                   
+    ]
+
+    var options_arr=[]
+    
+    //options_arr.push(['hello','1,2,3']); console.log(options_arr);
+    
+    // Select modal
+    var mpopup = document.getElementById('preview_modal');
+
+    // Select trigger link
+    var mpLink = document.getElementById("preview");
+
+    // Select close action element
+    var close = document.getElementsByClassName("close")[0];
+    window.onload = function(){
+    // Open modal once the link is clicked
+      mpLink.onclick = function() {
+          mpopup.style.display = "block";
+          var pre=document.getElementById('preview_content');
+          var str = JSON.stringify(data, null, 2);
+          pre.innerHTML=str; 
+          //var blob = new Blob([str], {type: "text/json;charset=utf-8"});
+          //saveAs(blob,"archive.json");
+      };
+
+      // Close modal once close element is clicked
+      /*close.onclick = function() {
+          mpopup.style.display = "none";
+      };*/
+
+      // Close modal when user clicks outside of the modal box
+      window.onclick = function(event) {
+          if (event.target == mpopup) {
+              mpopup.style.display = "none";
+          }
+      };
+    }
+
+    var closebtns = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < closebtns.length; i++) {
+      closebtns[i].addEventListener("click", function() {
+        //this.parentElement.style.display = 'none';
+        this.parentElement.removeChild(this.li);
+      });
+    }
+
+    var table = document.getElementById("myTable"),rIndex;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].onclick = function()
+                {
+                    rIndex = this.rowIndex;
+                    console.log("rindex:",rIndex);
+                    
+                    //document.getElementById("fname").value = this.cells[0].innerHTML;
+                    //document.getElementById("lname").value = this.cells[1].innerHTML;
+                    //document.getElementById("age").value = this.cells[2].innerHTML;
+                };
+            }
+
+    var option_count=1;
+
+
+    
+    function load_view() {
+     document.getElementById("demo").innerHTML='<object type="text/html" data="multimedia_QA/qa.html" ></object>';
+    }
+
+
+    function ql_show_questions(){
+      var selected_questions= document.getElementsByTagName('checkbox')
+      var table = document.getElementById("myTable2"),rIndex;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].onclick = function()
+                {
+                  if(this.cell0.checked){alert(checked)}  
+                  rIndex = this.rowIndex;
+                    console.log("rindex:",rIndex);
+                    
+                    //document.getElementById("fname").value = this.cells[0].innerHTML;
+                    //document.getElementById("lname").value = this.cells[1].innerHTML;
+                    //document.getElementById("age").value = this.cells[2].innerHTML;
+                };
+            }
+    }
+
+    function generate_js(){
+      var str = JSON.stringify(final_content, null, 2);
+      document.getElementById('demo').innerHTML=str 
+      var writting_data = "var qa_list=" + str
+      var blob = new Blob([writting_data], {type: "text/json;charset=utf-8"});
+      saveAs(blob,"qa_list.js");
+    }
+    function view_q_paper(){
+      console.log("view QP");
+      var str = JSON.stringify(final_content, null, 2);
+      document.getElementById('demo').innerHTML=str
+      
+    }
+
+    function iframe_update(){
+      //document.getElementById("iframe_view").src=final_content;
+      console.log("am in");
+      alert("hello")
+      //var pre=document.getElementById('preview_content');
+      //pre.innerHTML="hello";
+      //pre.html("<p>" + "hekllo" + "</p>");
+    }
+
+    function get_option_type(selectObject){
+      var value = selectObject.value;  
+      console.log(value);
+      if (value=="subjective") { console.log("subjective answer");}
+      else { create_options(value)}
+    }
+
+    function showRow(row)
+    {
+        console .log("row: ",row)
+        var x=row.cells;
+        console.log(row.cells[4].innerHTML);
+        //document.getElementById("type").value =  row.cells[2].innerHTML;
+        //document.getElementById("source").value =  row.cells[3].innerHTML;
+        //document.getElementById("question_type").value = row.cells[2].innerHTML;
+        document.getElementById("description").value = row.cells[4].innerHTML;
+        document.getElementById("question").value = row.cells[5].innerHTML;
+        document.getElementById("options").value = row.cells[6].innerHTML;
+        document.getElementById("correct_ans").value = row.cells[7].innerHTML;
+        
+        
+        document.getElementById("demo").innerHTML = row;
+    }
+
+    function myFunction(){
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput"); filter = input.value.toUpperCase();
+        table = document.getElementById("myTable"); tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent.toUpperCase() || td.innerText.toUpperCase();
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+          }       
+        }
+    }
+
+    function create_table_qa(table) {
+        console.log("in the function",table);
+        var table= document.getElementById(table);
+        var rowCount = table.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+
+        var opts=""
+        for (var i=0; i<(content.length);i++){
+            console.log(content[i], i);
+            var row = table.insertRow(-1);
+            row.onclick = function() { showRow(this) };
+            var cell0 = row.insertCell(0);  var cell1 = row.insertCell(1);  var cell2 = row.insertCell(2);  var cell3 = row.insertCell(3);
+            var cell4 = row.insertCell(4);  var cell5 = row.insertCell(5);  var cell6 = row.insertCell(6);  var cell7 = row.insertCell(7);
+            var cell8 = row.insertCell(8);       
+            if (content[i].opt.length > 0){
+                for (var j=0; j<content[i].opt.length;j++){
+                    opts=opts+content[i].opt[j].root+",";
+                }
+            }
+            console.log(content[i].typ);
+            check_box=document.createElement("input"); check_box.setAttribute("type","checkbox");
+            cell0.appendChild(check_box);
+            cell1.innerHTML = content[i].qid;  cell2.innerHTML = content[i].typ;  cell3.innerHTML = content[i].src;  cell4.innerHTML = content[i].des;
+            cell5.innerHTML = content[i].ques;  cell6.innerHTML = opts;  cell7.innerHTML = content[i].correct_ans;  cell8.innerHTML = content[i].user_ans;
+            opts="";
+        }
+    }
+
+    function create_row(){
+      var tablearea = document.getElementById('option_Table');
+      var tr = document.createElement('tr');
+
+      tr.appendChild( document.createElement('td') ); tr.appendChild( document.createElement('td') ); tr.appendChild( document.createElement('td') );
+      tr.appendChild( document.createElement('td') ); tr.appendChild( document.createElement('td') );
+
+      var x = document.createElement("input");
+      var y = document.createElement("input");
+      var z = document.createElement("input");
+      var del_btn = document.createElement("button"); //del_btn.innerHTML=" <i class='fa fa-trash' onclick='SomeDeleteRowFunction()'></i>"
+      var add_btn = document.createElement("button"); //add_btn.innerHTML=" <i class='fa fa-plus'></i>"
+  
+      //<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Your text here</button>
+      //<input type='file' id="getFile" style="display:none">
+
+      x.setAttribute("id","in_opt_"+option_count);  x.setAttribute("placeholder","Option label")
+      y.setAttribute("placeholder","Aliases words")
+      z.setAttribute("type","file");  z.setAttribute("id","in_file_"+option_count); //z.setAttribute("style","visibility:hidden")
+      del_btn.setAttribute("value","x"); del_btn.setAttribute("onclick","SomeDeleteRowFunction()")
+      add_btn.setAttribute("onclick","create_row()");
+
+      tr.cells[0].appendChild( x ); tr.cells[1].appendChild( y ); tr.cells[2].appendChild( z ); tr.cells[3].appendChild(del_btn); tr.cells[4].appendChild(add_btn);
+
+      tablearea.appendChild(tr);
+  }
+
+    function create_options(val){
+      console.log(typeof(val))
+        var option_div = document.getElementById('option_div');
+        option_div.innerHTML="";
+        
+      
+        //var add_btn = document.createElement("button"); //add_btn.innerHTML=" <i class='fa fa-plus'></i>"
+    
+        //<button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Your text here</button>
+        //<input type='file' id="getFile" style="display:none">
+        for (var j=1;j<=parseInt(val);j++){
+          console.log("j:",j);
+          var del_btn = document.createElement("button");   //del_btn.innerHTML=" <i class='fa fa-trash' onclick='SomeDeleteRowFunction()'></i>"
+          var sno = document.createElement("lable");
+          var x = document.createElement("input");
+          var y = document.createElement("input");
+          var z = document.createElement("input");
+          var brk=document.createElement("br");
+          sno.innerHTML=j+") ";
+          x.setAttribute("id","in_opt_"+j);  x.setAttribute("placeholder","comma seperated option names"); x.style.width="80%"
+          //y.setAttribute("id","in_aliases_"+j);  y.setAttribute("placeholder","C");
+          z.setAttribute("type","file");  z.setAttribute("id","in_file_"+j); //z.setAttribute("style","visibility:hidden")
+          del_btn.setAttribute("class","fa fa-trash"); del_btn.setAttribute("onclick","SomeDeleteRowFunction("+this+")")
+          //add_btn.setAttribute("onclick","create_row()");
+
+          option_div.appendChild(sno);  
+          option_div.appendChild(del_btn); option_div.appendChild( x ); //option_div.appendChild( y ); 
+          option_div.appendChild( z );  option_div.appendChild(brk);option_div.appendChild(brk);
+          console.log("done");
+        }
+        
+        var correct_ans = document.createElement("input"); correct_ans.setAttribute("id","correct_ans");  
+        correct_ans.style.width="25%"; correct_ans.setAttribute("placeholder","Choose correct answers numbers. eg: 0,0,1,0"); correct_ans.style.width="80%"
+        option_div.appendChild(correct_ans);
+    }
+
+    function SomeDeleteRowFunction(val) {
+      // event.target will be the input element.
+      console.log(val)
+      /*var td = event.target.parentNode; 
+      var tr = td.parentNode; // the row to be removed
+      tr.parentNode.removeChild(tr);*/
+    }
+
+    function clear_editor_content(){
+      var q_description=document.getElementById('description'); var q_question=document.getElementById('question');
+      var q_file=document.getElementById('myFile');  
+      var a_correct_ans=document.getElementById('correct_ans'); var option=document.getElementsByTagName('input');  
+
+      q_description.value=""; q_question.value="", a_correct_ans.value=""; 
+      for (var z=0;z<option.length;z++){
+        var comp1=option[z].id.indexOf("opt");  if (comp1 > -1){console.log(option[z].id);option_count=option_count+1;}
+      }
+      console.log("count",option_count);
+      if (option_count>=1){
+        console.log("inside if");
+        try{
+          for (var z=1;z<=option_count;z++){
+            console.log("inside for");
+            var opt_val=document.getElementById("in_opt_"+z);   
+            opt_val.value=""
+            
+          }
+        }
+        catch(err){console.log(err.message)}
+      }
+    }
+
+    function submit_editor_content(){
+      /*
+      qid:4,  // get question no by the length of the main final json content for questions + 1.
+      typ:"text", // look at the file extention and decide the type. if no file, type is blank ("").
+      src:"eng_example1.txt", // file name choosen. Allow only one file per option.
+      des:"Study details of document shown",  // take this input from the description field.
+      ques:"which fruit name is most repeated in this document?", // take this input from the question field.
+      // if no options put opt:[] and corect answer="", user_ans="" 
+      //else : for each no of option the  
+      {
+        opt:   //index = serial no, root= option name, alias= alias word , sourceFile= file choosen. if no file put "".
+        [   {   index:"1",root:"apple", alias:["one","1","apple","yapple"],sourceFile:"apple.jpg"}, 
+            {   index:"2",root:"orange", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
+            {   index:"3",root:"grape", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
+            {   index:"4",root:"banana", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
+            
+        ]
+      },
+      correct_ans:["0","0","0","1"], //corect answer= get from user 
+      user_ans:["0","0","0","0"] // for no of options append zeros accordingly in an array. 
+
+      */
+      
+      var q_description=document.getElementById('description'); var q_question=document.getElementById('question');
+      var q_file=document.getElementById('myFile');  
+      var a_correct_ans=document.getElementById('correct_ans'); var option=document.getElementsByTagName('input');  
+      var option_count=0; data=content_obj; data.opt=[]; data.user_ans=[]
+      
+      try {data.src=q_file.files[0].name;console.log(">>>>>>>>>>",q_file.files[0].name);} catch(err){console.log(err.message)}
+      for (var z=0;z<option.length;z++){
+        var comp1=option[z].id.indexOf("opt");  if (comp1 > -1){console.log(option[z].id);option_count=option_count+1;}
+      }
+      console.log("count",option_count);
+      if (option_count>=1){
+        console.log("inside if");
+        try{
+          for (var z=1;z<=option_count;z++){
+            console.log("inside for");
+            var opt_val=document.getElementById("in_opt_"+z);   
+            var tokens2= opt_val.value.split(',').slice(0,1);
+            var option_name = tokens2.join(''); 
+            var tokens = opt_val.value.split(',').slice(1);
+            var alias_names = tokens.join(','); 
+            console.log(option_name, alias_names);
+
+
+            var option_obj={ root:option_name, alias:alias_names.split(','),iconfile:""}
+            try{var opt_file_val=document.getElementById("in_file_"+z); option_obj.sourceFile=opt_file_val.files[0].name} catch(err){console.log(err.message)}
+            data.opt.push(option_obj); data.user_ans.push("0");
+            console.log(data.opt);
+          }
+        }
+        catch(err){console.log(err.message)}
+      }
+      //data.src=q_file.files[0].name;
+      data.src=q_file;
+      try{
+        data.des=q_description.value; data.ques=q_question.value;
+        data.correct_ans=a_correct_ans.value.split(',');
+        console.log("data :",data);
+        final_content.item[0].question.push(data); alert("data has been pushed to list")
+      } 
+      catch(err){console.log(err.message)}
+      console.log("final_data:",final_content);
+      
+      //var a_type=document.getElementById('answer_type');
+      //var a_options=document.getElementById('option_Table');
+      //var options=document.getElementById('options')
+      
+      
+      //console.log(q_description.value,q_question.value,a_type.value,a_options.value,a_correct_ans.value)
+
+      //gets table
+      /*var oTable = document.getElementById('option_Table');
+
+      //gets rows of table
+      var rowLength = oTable.rows.length;
+
+      //loops through rows    
+      for (i = 0; i < rowLength; i++){
+
+        //gets cells of current row
+        var oCells = oTable.rows.item(i).cells;
+
+        //gets amount of cells of current row
+        var cellLength = oCells.length;
+
+        //loops through each cell in current row
+        //for(var j = 0; j < cellLength; j++){
+          //console.log(oCells.item(j).value);
+            /* get your cell info here */
+            /* var cellVal = oCells.item(j).innerHTML; */
+        //}*/
+      //}
+      
+      /*var data=content_obj;
+
+      data.typ=q_type.value;
+      data.ques=q_question.value;
+      data.des=q_description.value;
+      data.typ=a_type.value;
+      data.correct_ans=a_correct_ans.value;
+
+      console.log("data::",data.ques.value);
+      final_content.push(data);
+      document.getElementById("column2").innerHTML=JSON.stringify(final_content);*/
+
+    }
+
+    function create_new_question(){
+      var q_type=document.getElementById('question_type');
+      var q_file=document.getElementById('myfile');
+      var q_description=document.getElementById('description');
+      var q_question=document.getElementById('question');   
+
+      var a_type=document.getElementById('answer_type');
+      //var a_options=document.getElementById('option_Table');
+      var options=document.getElementById('options')
+      var a_correct_ans=document.getElementById('correct_ans');
+
+      q_description.value=""; q_file.value=""; q_question.value="";  options.value=""; a_correct_ans.value="";
+    }
+
+
+    function add_option_to_table() {
+
+      var opt=document.getElementById("options");
+      var alias=document.getElementById("alias");
+
+      var opt_obj=[opt.value,alias.value]
+      console.log(opt_obj, typeof(options_arr));
+
+      options_arr.push([opt.value,alias.value]);
+      console.log("option_obj: ",options_arr); 
+      var option_table = document.getElementById('option_table2');
+      
+      if(options_arr.length > 0){
+        option_table.innerHTML='';
+        for (var j=0;j<options_arr.length;j++){
+          var row = option_table.insertRow(-1);
+          row.onclick = function() { deleterow(this) };
+          var cell0 = row.insertCell(0);  var cell1 = row.insertCell(1);  var cell2 = row.insertCell(2);            
+          cell0.innerHTML = options_arr[j][0]; cell1.innerHTML = options_arr[j][1];  cell2.innerHTML='delete';
+        }
+
+      }
+
+
+      /*
+        console.log("in the function");
+        var table = document.getElementById("option_table2");
+        
+        var rowCount = table.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+
+        var opts=""
+        for (var i=0; i<(content.length);i++){
+            console.log(content[i], i);
+            var row = table.insertRow(-1);
+            row.onclick = function() { showRow(this) };
+            var cell0 = row.insertCell(0);  var cell1 = row.insertCell(1);  var cell2 = row.insertCell(2);  var cell3 = row.insertCell(3);
+            var cell4 = row.insertCell(4);  var cell5 = row.insertCell(5);  var cell6 = row.insertCell(6);  var cell7 = row.insertCell(7);
+            var cell8 = row.insertCell(8);       
+            if (content[i].opt.length > 0){
+                for (var j=0; j<content[i].opt.length;j++){
+                    opts=opts+content[i].opt[j].root+",";
+                }
+            }
+            console.log(content[i].typ);
+            check_box=document.createElement("input"); check_box.setAttribute("type","checkbox");
+            cell0.appendChild(check_box);
+            cell1.innerHTML = content[i].qid;  cell2.innerHTML = content[i].typ;  cell3.innerHTML = content[i].src;  cell4.innerHTML = content[i].des;
+            cell5.innerHTML = content[i].ques;  cell6.innerHTML = opts;  cell7.innerHTML = content[i].correct_ans;  cell8.innerHTML = content[i].user_ans;
+            opts="";
+        }*/
+    }
+
+    function deleterow(row)
+    {
+        console .log("row: ",row)
+        var x=row.cells;
+        let text = "Are you sure to delete the option: "+row.cells[0].innerHTML;
+        if (confirm(text) == true) {
+          console.log("am in ");
+          for (var j=0;j<options_arr.length;j++){
+            console.log(options_arr[j][0],row.cells[0].innerHTML)
+            if (options_arr[j][0]==row.cells[0].innerHTML){
+              console.log("equal....",options_arr );
+              options_arr.splice(j, 1); 
+              console.log("equal....",options_arr );
+              add_option_to_table();
+            }
+        }
+        } else {
+          text = "You canceled!";
+        }
+    }  
+
+
+ </script>
+</html>
