@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>My Personal Website</h1>
+<p>This section presents topic related video/audio/image/text content</p>
+<img src="C:/Users/psram/OneDrive/biz/selfbiz_CSR/technology/wizard/Picture1.png" alt="nopic"><br>
+<form action="q&a2">
+  <p></p>the person in the image is :</p>
+  <input type="radio" id="a11" name="a1" value="1">
+  <label for="a1">madona</label></t><br>
+  <input type="radio" id="a12" name="a2" value="2">
+  <label for="a2"> lady gaga </label></t><br>
+  <input type="radio" id="a13" name="a3" value="3">
+  <label for="a3">nico</label></t><br>
+  <input type="radio" id="a14" name="a4" value="4">
+  <label for="a4">lena</label><br>
+ </form>    
+<video width="320" height="240" controls>
+    <source src="C:/Users/psram/OneDrive/biz/selfbiz_CSR/technology/wizard/VID-20150213-WA0011.mp4"type="video/mp4">
+  </video>
+  <br> 
+    <form action="q&a1">
+       <p></p>In the video above the robotic arm is lowered by:</p>
+       <input type="radio" id="a21" name="a1" value="1">
+       <label for="a1">motor</label></t><br>
+       <input type="radio" id="a22" name="a2" value="2">
+       <label for="a2">manually</label></t><br>
+       <input type="radio" id="a23" name="a3" value="3">
+       <label for="a3">gravity</label></t><br>
+       <input type="radio" id="a24" name="a4" value="4">
+       <label for="a4">pneumatically</label><br>
+      </form>    
+<audio controls>
+<source src="C:/Users/psram/OneDrive/biz/selfbiz_CSR/technology/wizard/2studio.mp3" type="audio/mp3">
+</audio>
+
+    <p></p>the audeo clip above is from :</p>
+    <input type="radio" id="a31" name="Game of thrones" value="0">
+    <label for="a1">Game of thrones</label></t><br>
+    <input type="radio" id="a32" name="Beethoven" value="0">
+    <label for="a2"> Beethoven </label></t><br>
+    <input type="radio" id="a33" name="edge of the world" value="0">
+    <label for="a3">edge of the world</label></t><br>
+    <input type="radio" id="a34" name="peace" value="0">
+    <label for="a4">peace</label><br>
+
+   <input type="text" name="q" id="transcript" placeholder="Speak" />
+   <button onclick="setradio()" ></button>
+   <button onclick="startDictation()"  ></button>
+  
+   <!-- HTML5 Speech Recognition API -->
+<script>
+  function startDictation() {
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+      var recognition = new webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+      recognition.start();
+      recognition.onresult = function (e) {
+        var txt = e.results[0][0].transcript;
+        document.getElementById('transcript').value = txt;
+        document.getElementById('a34').check=false;
+        recognition.stop();
+      };
+      recognition.onerror = function (e) {
+        recognition.stop();
+      };
+    }
+  }
+  function setradio(){
+    if (document.getElementById('a34').check=="false");
+     {
+      document.getElementById('a34').click();
+      //document.getElementById('a34').click();
+    }
+    else 
+     {clickstat=0;
+      document.getElementById('a34').check="false";
+    }
+  }
+</script>
+
+
+
+      <p>>The presentation, question, optional answers together form an atomic interactive learning unit</p>
+</body>
+</html>

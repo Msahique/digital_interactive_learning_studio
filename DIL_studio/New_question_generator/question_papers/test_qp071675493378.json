@@ -1,0 +1,77 @@
+[
+    {
+        "qid": 4,
+        "typ": "text",
+        "src": "eng_example1.txt",
+        "des": "Study details of document shown",
+        "ques": "which fruit name is most repeated in this document?",
+        "opt": [
+            {
+                "index": "1",
+                "root": "apple",
+                "alias": [
+                    "one",
+                    "1",
+                    "apple",
+                    "yapple"
+                ],
+                "sourceFile": "apple.jpg"
+            },
+            {
+                "index": "2",
+                "root": "orange",
+                "alias": [
+                    "two",
+                    "2",
+                    "orange",
+                    "arrange"
+                ],
+                "sourceFile": "orange.jpg"
+            },
+            {
+                "index": "3",
+                "root": "grape",
+                "alias": [
+                    "three",
+                    "3",
+                    "grapes",
+                    "grape",
+                    "grep",
+                    "grip",
+                    "grips"
+                ],
+                "sourceFile": "grapes.jpg"
+            },
+            {
+                "index": "4",
+                "root": "banana",
+                "alias": [
+                    "four",
+                    "4",
+                    "banana",
+                    "banaana",
+                    "banaanaa",
+                    "bonana",
+                    "bonaana"
+                ],
+                "sourceFile": "banana.jpg"
+            }
+        ],
+        "correct_ans": [
+            "0",
+            "0",
+            "0",
+            "1"
+        ],
+        "user_ans": [
+            "0",
+            "0",
+            "0",
+            "0"
+        ],
+        "transition_mode": "mode1",
+        "scoring_system": "eval1",
+        "question_position": "3",
+        "max_score": "10"
+    }
+]

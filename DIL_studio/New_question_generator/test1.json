@@ -1,0 +1,297 @@
+[
+    {
+        "qid": 1,
+        "typ": "text",
+        "src": "eng_example1.txt",
+        "des": "Study details of document shown",
+        "ques": "which fruit name is most repeated in this document?",
+        "opt": [
+            {
+                "index": "1",
+                "root": "apple",
+                "alias": [
+                    "one",
+                    "1",
+                    "apple",
+                    "yapple"
+                ],
+                "sourceFile": "apple.jpg"
+            },
+            {
+                "index": "2",
+                "root": "orange",
+                "alias": [
+                    "two",
+                    "2",
+                    "orange",
+                    "arrange"
+                ],
+                "sourceFile": "orange.jpg"
+            },
+            {
+                "index": "3",
+                "root": "grape",
+                "alias": [
+                    "three",
+                    "3",
+                    "grapes",
+                    "grape",
+                    "grep",
+                    "grip",
+                    "grips"
+                ],
+                "sourceFile": "grapes.jpg"
+            },
+            {
+                "index": "4",
+                "root": "banana",
+                "alias": [
+                    "four",
+                    "4",
+                    "banana",
+                    "banaana",
+                    "banaanaa",
+                    "bonana",
+                    "bonaana"
+                ],
+                "sourceFile": "banana.jpg"
+            }
+        ],
+        "correct_ans": [
+            "0",
+            "0",
+            "0",
+            "1"
+        ],
+        "user_ans": [
+            "0",
+            "0",
+            "0",
+            "0"
+        ]
+    },
+    {
+        "qid": 2,
+        "typ": "text",
+        "src": "eng_example2.txt",
+        "des": "Study details of document2 shown",
+        "ques": "which fruit name is most repeated in this document?",
+        "opt": [
+            {
+                "index": "1",
+                "root": "mango",
+                "alias": [
+                    "one",
+                    "1",
+                    "apple",
+                    "yapple"
+                ],
+                "sourceFile": "apple.jpg"
+            },
+            {
+                "index": "2",
+                "root": "kiwi",
+                "alias": [
+                    "two",
+                    "2",
+                    "orange",
+                    "arrange"
+                ],
+                "sourceFile": "orange.jpg"
+            },
+            {
+                "index": "3",
+                "root": "water melon",
+                "alias": [
+                    "three",
+                    "3",
+                    "grapes",
+                    "grape",
+                    "grep",
+                    "grip",
+                    "grips"
+                ],
+                "sourceFile": "grapes.jpg"
+            },
+            {
+                "index": "4",
+                "root": "lime",
+                "alias": [
+                    "four",
+                    "4",
+                    "banana",
+                    "banaana",
+                    "banaanaa",
+                    "bonana",
+                    "bonaana"
+                ],
+                "sourceFile": "banana.jpg"
+            }
+        ],
+        "correct_ans": [
+            "0",
+            "0",
+            "1",
+            "0"
+        ],
+        "user_ans": [
+            "0",
+            "0",
+            "0",
+            "0"
+        ]
+    },
+    {
+        "qid": 3,
+        "typ": "text",
+        "src": "eng_example3.txt",
+        "des": "document 3 study details",
+        "ques": "which is the king of fruits?",
+        "opt": [
+            {
+                "index": "1",
+                "root": "mango",
+                "alias": [
+                    "one",
+                    "1",
+                    "apple",
+                    "yapple"
+                ],
+                "sourceFile": "apple.jpg"
+            },
+            {
+                "index": "2",
+                "root": "kiwi",
+                "alias": [
+                    "two",
+                    "2",
+                    "orange",
+                    "arrange"
+                ],
+                "sourceFile": "orange.jpg"
+            },
+            {
+                "index": "3",
+                "root": "water melon",
+                "alias": [
+                    "three",
+                    "3",
+                    "grapes",
+                    "grape",
+                    "grep",
+                    "grip",
+                    "grips"
+                ],
+                "sourceFile": "grapes.jpg"
+            },
+            {
+                "index": "4",
+                "root": "lime",
+                "alias": [
+                    "four",
+                    "4",
+                    "banana",
+                    "banaana",
+                    "banaanaa",
+                    "bonana",
+                    "bonaana"
+                ],
+                "sourceFile": "banana.jpg"
+            }
+        ],
+        "correct_ans": [
+            "1",
+            "0",
+            "0",
+            "0"
+        ],
+        "user_ans": [
+            "0",
+            "0",
+            "0",
+            "0"
+        ]
+    },
+    {
+        "qid": 4,
+        "typ": "text",
+        "src": "eng_example4.txt",
+        "des": "document 4 study details is shown",
+        "ques": "which fruit is the citrus in this document?",
+        "opt": [
+            {
+                "index": "1",
+                "root": "apple",
+                "alias": [
+                    "one",
+                    "1",
+                    "apple",
+                    "yapple"
+                ],
+                "sourceFile": "apple.jpg"
+            },
+            {
+                "index": "2",
+                "root": "orange",
+                "alias": [
+                    "two",
+                    "2",
+                    "orange",
+                    "arrange"
+                ],
+                "sourceFile": "orange.jpg"
+            },
+            {
+                "index": "3",
+                "root": "grape",
+                "alias": [
+                    "three",
+                    "3",
+                    "grapes",
+                    "grape",
+                    "grep",
+                    "grip",
+                    "grips"
+                ],
+                "sourceFile": "grapes.jpg"
+            },
+            {
+                "index": "4",
+                "root": "banana",
+                "alias": [
+                    "four",
+                    "4",
+                    "banana",
+                    "banaana",
+                    "banaanaa",
+                    "bonana",
+                    "bonaana"
+                ],
+                "sourceFile": "banana.jpg"
+            }
+        ],
+        "correct_ans": [
+            "0",
+            "1",
+            "0",
+            "0"
+        ],
+        "user_ans": [
+            "0",
+            "0",
+            "0",
+            "0"
+        ]
+    },
+    {
+        "qid": 5,
+        "typ": "",
+        "src": {},
+        "des": "health question",
+        "ques": "how is your health",
+        "i360": "",
+        "opt": [],
+        "correct_ans": [],
+        "user_ans": []
+    }
+]

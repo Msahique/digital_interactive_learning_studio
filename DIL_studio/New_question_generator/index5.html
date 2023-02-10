@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="filesaver.js"></script>
   <script src="multimedia_QA/qa_list.js"></script>
+  <script src="qp_list_tab.js"></script>
 </head>
 <style>
     * {
@@ -54,7 +55,7 @@
       margin-bottom: 1px;
     }
     
-    #myTable1,#myTable2 {
+    #myTable1,#myTable2,#myTable3 {
       border-collapse: collapse;
       width: 100%;
       border: 1px solid #ddd;
@@ -183,7 +184,17 @@
     @keyframes animatetop {
         from {top:-300px; opacity:0}
         to {top:0; opacity:1}
-    }   
+    }
+    
+    div.scroll {
+      background-color: #fed9ff;
+      width: 600px;
+      height: 150px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align: center;
+      padding: 20px;
+    }
 
 </style>
 <body >
@@ -202,10 +213,10 @@
         <a class="nav-link" data-bs-toggle="tab" onclick="create_table_qa('myTable1',content)" href="#questions">Question Bank</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab"  href="#qa_generator">Question Paper generator</a>
+          <a class="nav-link" data-bs-toggle="tab"  onclick="create_table_qa('myTable2',content)" href="#qa_generator">Question Paper generator</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="tab"  href="#qa_list">Question Paper list</a>
+          <a class="nav-link" data-bs-toggle="tab" onclick="get_question_paper_list()" href="#qa_list">Question Paper list</a>
           </li>
     </ul>
   </div>
@@ -226,7 +237,6 @@
       <!-- <button id="preview" onclick="iframe_update()" >Preview </button>  -->
       <!--<button  onclick="view_q_paper()"  >View</button> -->
       <button  onclick="load_view()" >View</button>
-      <button  onclick="get_qa_list()" >qalist</button>
       <div id="preview_modal" class="modal">
           <div class="modal-content">
               <!-- <h1>Preview</h1> -->
@@ -250,6 +260,8 @@
               <th >Option</th>
               <th >Correct_answer</th>
               <th >User_answer</th>
+              <th >Subject</th>
+              <th >Topic</th>
             </tr>
            
           </table>
@@ -284,6 +296,7 @@
     </div>
 
     <div id="qa_generator" class="container tab-pane fade" height="40%" width="100%" ><br>
+      <button  onclick="get_qa_list()" >qalist</button>
       <button id="create_question_paper" onclick="create_question_paper()" style="float:right ;" >Create Question paper</button>
       <table id="myTable2">
         <tr class="header">
@@ -296,14 +309,28 @@
           <th >Option</th>
           <th >Correct_answer</th>
           <th >User_answer</th>
-          <th >mode</th>
+          <!--<th >mode</th>
           <th >position</th>
           <th >max Score</th>
-          <th >Scoring type</th>
+          <th >Scoring type</th>-->
           
         </tr>
-       
       </table>
+      <br>
+      <div>
+        <table id="myTable3">
+          <tr class="header">
+            <th>Select</th>
+            <th >id</th>
+            <th >mode</th>
+            <th >position</th>
+            <th >max Score</th>
+            <th >Scoring type</th>
+            
+          </tr>
+        </table>
+      </div>
+      
       
       <!--
       <div id="ql_column1" class="border border-dark" style="border-width: 50%; border-bottom:100% ;">
@@ -323,9 +350,11 @@
   
 
   <div id="qa_list" class="container tab-pane fade"  height="40%" width="100%" ><br>
-    <div><button id="get_qp_list" onclick="create_list()" style="float:right ;">get List</button></div>
+    <div><button id="get_qp_list" onclick="create_list()" style="float:right ;">get List</button> <br><br>
+    </div>
 
     <div >
+      <!-- 
       <div style="width: 20%; float:left;" >
         List of files 
         <div id='list_div'> </div> <hr>
@@ -335,6 +364,18 @@
           File Content <br> <br>
           <div><textarea id="raw_article" rows="12" cols="120"></textarea>  </div>
       </div>
+
+      
+      -->
+      
+        <div class="scroll" id="qp_list_div" style="background-color: lightseagreen; width: 20%; height: 500px; float:left;" >
+          
+        </div>
+
+        <div style="background-color: lightgrey; width:80%; height: 500px; float:left;">
+          this is second division that is vertically aligned
+        </div>
+
     </div>
     
     
@@ -348,7 +389,7 @@
     console.log("this is qa list:",qa_list);
     
     function get_qa_list(){
-      var table = document.getElementById("myTable1"), q_ids=[];q_list=[];
+      var table = document.getElementById("myTable2"), q_ids=[];q_list=[];
       //var table= document.getElementById(table);
       var rowCount = table.rows.length; console.log(rowCount)
       for(var i=1; i<=rowCount; i++){
@@ -377,14 +418,14 @@
         for (var i = rowCount - 1; i > 0; i--) {
           document.getElementById("myTable2").deleteRow(i);
         }
-        create_table_qa('myTable2',q_list)
+        create_table_qa('myTable3',q_list)
       };
       /*var hash = window.location.hash.substr(1);
       if(hash === "borrower-tab"){
           $("borrower").tab("show");
       }*/
       
-  create_table_qa('myTable2',q_list)
+  create_table_qa('myTable3',q_list)
 
       
      /* console.log("list1:",list1);
@@ -551,14 +592,13 @@
               myresult = raps;
           }
           return (myresult);
-
-          
       }
       getData().then(data => {console.log(data)} );
       
       if(mode=="view"){document.getElementById("demo2").innerHTML='<object type="text/html" data="multimedia_QA/qa.html" ></object>';}
       else{}
     }
+    
     
     var content_obj={   
             qid:0, 
@@ -621,7 +661,6 @@
                 {   index:"2",root:"orange", alias:["two","2","orange","arrange"],sourceFile:"orange.jpg"},
                 {   index:"3",root:"grape", alias:["three","3","grapes","grape","grep", "grip","grips"], sourceFile:"grapes.jpg"},
                 {   index:"4",root:"banana", alias:["four","4","banana","banaana","banaanaa","bonana","bonaana"],sourceFile:"banana.jpg"}
-                
             ],
             correct_ans:["0","0","0","1"],
             user_ans:["0","0","0","0"]
@@ -887,7 +926,7 @@
     }
 
     function create_table_qa(table,table_data) {
-        console.log("in the function",table);
+        console.log("in the function",table,table_data);
         var table_name=table; console.log(table)
         var table= document.getElementById(table);
         var rowCount = table.rows.length;
@@ -900,10 +939,13 @@
             console.log(table_data[i], i);
             var row = table.insertRow(-1);
             row.onclick = function() { showRow(this) };
-            var cell0 = row.insertCell(0);  var cell1 = row.insertCell(1);  var cell2 = row.insertCell(2);  var cell3 = row.insertCell(3);
-            var cell4 = row.insertCell(4);  var cell5 = row.insertCell(5);  var cell6 = row.insertCell(6);  var cell7 = row.insertCell(7);
-            var cell8 = row.insertCell(8);   
-            if(table_name=="myTable2"){ var cell9 = row.insertCell(9), cell10 = row.insertCell(10), cell11 = row.insertCell(11), cell12 = row.insertCell(12);  }    
+            if(table_name=="myTable3"){var cell0 = row.insertCell(0);;  var cell1 = row.insertCell(1); }
+            else{
+              var cell0 = row.insertCell(0);  var cell1 = row.insertCell(1);  var cell2 = row.insertCell(2);  var cell3 = row.insertCell(3);
+              var cell4 = row.insertCell(4);  var cell5 = row.insertCell(5);  var cell6 = row.insertCell(6);  var cell7 = row.insertCell(7);
+              var cell8 = row.insertCell(8);   
+            }
+            if(table_name=="myTable3"){ var cell9 = row.insertCell(2), cell10 = row.insertCell(3), cell11 = row.insertCell(4), cell12 = row.insertCell(5);  }    
             if (table_data[i].opt.length > 0){
                 for (var j=0; j<table_data[i].opt.length;j++){
                     opts=opts+table_data[i].opt[j].root+",";
@@ -912,9 +954,12 @@
             console.log(table_data[i].typ);
             check_box=document.createElement("input"); check_box.setAttribute("type","checkbox"); check_box.setAttribute("id","checkbox_"+(i+1));
             cell0.appendChild(check_box);
-            cell1.innerHTML = table_data[i].qid;  cell2.innerHTML = table_data[i].typ;  cell3.innerHTML = table_data[i].src;  cell4.innerHTML = table_data[i].des;
-            cell5.innerHTML = table_data[i].ques;  cell6.innerHTML = opts;  cell7.innerHTML = table_data[i].correct_ans;  cell8.innerHTML = table_data[i].user_ans;
-            if(table_name=="myTable2"){ 
+            if(table_name=="myTable3"){cell1.innerHTML = table_data[i].qid;}
+            else{
+              cell1.innerHTML = table_data[i].qid;  cell2.innerHTML = table_data[i].typ;  cell3.innerHTML = table_data[i].src;  cell4.innerHTML = table_data[i].des;
+              cell5.innerHTML = table_data[i].ques;  cell6.innerHTML = opts;  cell7.innerHTML = table_data[i].correct_ans;  cell8.innerHTML = table_data[i].user_ans;
+            }
+              if(table_name=="myTable3"){ 
                 var array=["mode1","mode2","mode3"]; array2=["eval1","eval2","eval3"]             
                 var selectList = document.createElement("select");
                 selectList.setAttribute("id", "mySelect"+i);
@@ -1253,3 +1298,4 @@
 
  </script>
 </html>
+
