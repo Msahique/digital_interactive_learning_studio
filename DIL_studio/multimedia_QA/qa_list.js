@@ -70,6 +70,17 @@ var qa_list=
                     correct_ans:[],
                     user_ans:[]
                    
+                },
+                {   qno:6, 
+                    typ:"i360", 
+                    src:"eng_example2.txt", 
+                    des:"Study details of document shown",
+                    ques:"Name the crop that is being shown . ",
+                    i360:"http://127.0.0.1:5503/img360/R0010028_20221130082833%20(1).html",
+                    opt:[],
+                    correct_ans:[],
+                    user_ans:[]
+                   
                 }
             
             ]   

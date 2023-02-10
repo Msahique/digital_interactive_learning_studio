@@ -3,10 +3,13 @@ function present_question(qi)
 {   present.innerHTML="";describe.innerHTML="";question.innerHTML="";ans_options.innerHTML="";
     var source=presentation_config.content_filepath+qa_list.item[langindex].question[qi].src;//console.log(source);
     var desc=qa_list.item[langindex].question[qi].des;var ques=qa_list.item[langindex].question[qi].ques;
+    var img360=qa_list.item[langindex].question[qi].i360;
+    console.log(">>>>>",qa_list.item[langindex].question[qi].typ);
     switch (qa_list.item[langindex].question[qi].typ)// based on type of media content instantiate appropriate element and load content
     {   case 'img': {   var p= document.createElement('img');p.class="img-fluid";p.Id='image_view';p.name='image_view'; ; p.src= source;present.appendChild(p); break;}
         case 'video':{  var p= document.createElement('video');p.Id='video_view';p.name='video_view'; p.controls='controls';p.src=source; present.appendChild(p); break;}
         case 'audio':{  var p= document.createElement('AUDIO');p.Id='audio_view';p.name='audio_view'; p.controls = 'controls'; p.src=source; present.appendChild(p); break;}
+        case 'i360' :{  var p= document.createElement('a');var linkText = document.createTextNode("Open Image");p.appendChild(linkText);p.href = img360;p.Id='i360_view';p.name='audio_view'; p.controls = 'controls'; p.src=source; present.appendChild(p); break;}
         case 'text':{   var cols=40;var p = document.createElement('textarea');p.id="text_view";p.cols=cols;p.name="text_view";present.appendChild(p);
                         fetch(source).then(response => response.text()).then(data => {document.getElementById('text_view').value=data;var rs=(data.length/cols)+2;console.log(cols, data.length,rs);document.getElementById('text_view').rows=rs;});break;}
 //      case 'doc':{var ifrm = document.createElement('iframe');ifrm.setAttribute('id', 'ifrm');ifrm.setAttribute('src','demo.html');document.body.appendChild(ifrm);break;}
