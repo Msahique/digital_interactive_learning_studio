@@ -668,8 +668,9 @@
         //myselect+i,eval+i,textbox+i,maxscore+i
 
         for(var k=0;k<content.length;k++){
-          //console.log("compare=" +table.rows[i].cells[1].innerHTML+"=="+content[k].qid);
-          if(table=="myTable3")
+          console.log("compare=" +table.rows[i].cells[1].innerHTML+"=="+content[k].qid);
+          console.log(table)
+          if(table_name=="myTable3")
           {
             if(table.rows[i].cells[1].innerHTML==content[k].qid){
               console.log("found");
@@ -682,7 +683,7 @@
               f_content.max_score=document.getElementById('max_score'+(i-1)).value
               //final_question_paper.push(f_content); 
               console.log(f_content)
-              sending_data.item[0].question.append(f_content);
+              sending_data.item[0].question.push(f_content);
               console.log(sending_data.item[0])
               k=content.length;
             }

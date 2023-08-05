@@ -1,0 +1,63 @@
+{
+    "item": [
+        {
+            "language": "english",
+            "question": [
+                {
+                    "correct_ans": [
+                        "1",
+                        "0",
+                        "0",
+                        "0"
+                    ],
+                    "des": "Solar system",
+                    "i360": "",
+                    "opt": [
+                        {
+                            "alias": [
+                                "855 miles"
+                            ],
+                            "iconfile": "",
+                            "root": "238"
+                        },
+                        {
+                            "alias": [
+                                "855 miles"
+                            ],
+                            "iconfile": "",
+                            "root": "283"
+                        },
+                        {
+                            "alias": [
+                                "855 miles"
+                            ],
+                            "iconfile": "",
+                            "root": "328"
+                        },
+                        {
+                            "alias": [
+                                "855 miles"
+                            ],
+                            "iconfile": "",
+                            "root": "288"
+                        }
+                    ],
+                    "qid": 6,
+                    "ques": "What is the average distance of the moon from earth ?",
+                    "src": {},
+                    "typ": "4",
+                    "user_ans": [
+                        "0",
+                        "0",
+                        "0",
+                        "0"
+                    ],
+                    "transition_mode": "mode1",
+                    "scoring_system": "eval1",
+                    "question_position": "1",
+                    "max_score": "1"
+                }
+            ]
+        }
+    ]
+}
